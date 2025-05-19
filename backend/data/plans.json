@@ -1,0 +1,198 @@
+[
+  {
+    "email": "kiddo9171@gmail.com",
+    "workouts": [
+      {
+        "day": "Monday",
+        "title": "Full Body",
+        "duration": "35 minutes",
+        "intensity": "Medium",
+        "exercises": [
+          {
+            "name": "Push-ups",
+            "reps": "3x12"
+          },
+          {
+            "name": "Squats",
+            "reps": "3x15"
+          },
+          {
+            "name": "Lunges",
+            "reps": "3x10 each leg"
+          },
+          {
+            "name": "Plank",
+            "reps": "3x30 seconds"
+          },
+          {
+            "name": "Jumping Jacks",
+            "reps": "4x30 seconds"
+          },
+          {
+            "name": "High Knees",
+            "reps": "4x30 seconds"
+          }
+        ],
+        "isCompleted": true
+      },
+      {
+        "day": "Tuesday",
+        "title": "Upper Body Focus",
+        "duration": "30 minutes",
+        "intensity": "Medium",
+        "exercises": [
+          {
+            "name": "Push-ups",
+            "reps": "3x12"
+          },
+          {
+            "name": "Squats",
+            "reps": "3x15"
+          },
+          {
+            "name": "Lunges",
+            "reps": "3x10 each leg"
+          },
+          {
+            "name": "Burpees",
+            "reps": "3x10"
+          },
+          {
+            "name": "Tricep Dips",
+            "reps": "3x12"
+          }
+        ],
+        "isCompleted": true
+      },
+      {
+        "day": "Wednesday",
+        "title": "Core & Flexibility",
+        "duration": "25 minutes",
+        "intensity": "Medium",
+        "exercises": [
+          {
+            "name": "Plank",
+            "reps": "3x30 seconds"
+          },
+          {
+            "name": "Mountain Climbers",
+            "reps": "3x20"
+          },
+          {
+            "name": "Downward Dog",
+            "reps": "30 seconds"
+          },
+          {
+            "name": "Warrior Pose",
+            "reps": "30 seconds each side"
+          }
+        ],
+        "isCompleted": true
+      },
+      {
+        "day": "Thursday",
+        "title": "Full Body",
+        "duration": "35 minutes",
+        "intensity": "Medium",
+        "exercises": [
+          {
+            "name": "Push-ups",
+            "reps": "3x12"
+          },
+          {
+            "name": "Squats",
+            "reps": "3x15"
+          },
+          {
+            "name": "Lunges",
+            "reps": "3x10 each leg"
+          },
+          {
+            "name": "Plank",
+            "reps": "3x30 seconds"
+          },
+          {
+            "name": "Jumping Jacks",
+            "reps": "4x30 seconds"
+          },
+          {
+            "name": "High Knees",
+            "reps": "4x30 seconds"
+          }
+        ],
+        "isCompleted": true
+      },
+      {
+        "day": "Friday",
+        "title": "Upper Body Focus",
+        "duration": "30 minutes",
+        "intensity": "Medium",
+        "exercises": [
+          {
+            "name": "Push-ups",
+            "reps": "3x12"
+          },
+          {
+            "name": "Squats",
+            "reps": "3x15"
+          },
+          {
+            "name": "Lunges",
+            "reps": "3x10 each leg"
+          },
+          {
+            "name": "Burpees",
+            "reps": "3x10"
+          },
+          {
+            "name": "Tricep Dips",
+            "reps": "3x12"
+          }
+        ],
+        "isCompleted": true
+      },
+      {
+        "day": "Saturday",
+        "title": "Core & Flexibility",
+        "duration": "25 minutes",
+        "intensity": "Medium",
+        "exercises": [
+          {
+            "name": "Plank",
+            "reps": "3x30 seconds"
+          },
+          {
+            "name": "Mountain Climbers",
+            "reps": "3x20"
+          },
+          {
+            "name": "Downward Dog",
+            "reps": "30 seconds"
+          },
+          {
+            "name": "Warrior Pose",
+            "reps": "30 seconds each side"
+          }
+        ],
+        "isCompleted": true
+      },
+      {
+        "day": "Sunday",
+        "title": "Rest & Recovery",
+        "duration": "15 minutes",
+        "intensity": "Low",
+        "exercises": [
+          {
+            "name": "Light Stretching",
+            "reps": "10 minutes"
+          },
+          {
+            "name": "Meditation",
+            "reps": "5 minutes"
+          }
+        ],
+        "isCompleted": true
+      }
+    ]
+  }
+]

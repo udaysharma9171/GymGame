@@ -1,0 +1,129 @@
+Gamify Gym World – Technical Report
+
+## Overview
+
+Gamify Gym World is a web-based personal training application that combines fitness tracking with game-like rewards. Its purpose is to motivate users to exercise regularly by turning workout routines into an interactive experience. Users input their body stats (height, weight) and fitness goals (cutting or bulking). The app then calculates BMI and generates a personalized 7-day plan of bodyweight exercises, yoga, and meditation. It incorporates gamification (points, levels, streaks) to boost motivation.
+
+## Tech Stack
+
+**Frontend**
+
+* Framework: React (JavaScript) for a dynamic single-page application.
+* Routing: React Router for client-side navigation.
+* State & Storage:
+
+  * React Hooks (`useState`, `useEffect`, `useContext`) manage UI state.
+  * **Local Storage** (`window.localStorage`) persists user data (profile, stats, XP, level, streaks) on the browser.
+* Styling: Tailwind CSS for responsive, utility-first design.
+* Data Fetching: `fetch` or Axios for interacting with backend APIs.
+
+**Backend**
+
+* Runtime & Framework: Node.js with Express.js to serve REST API endpoints.
+* Data Persistence: **File-based JSON storage** using the Node.js `fs` module. Data files reside under `/backend/data/`:
+
+  * `users.json`: stores user profiles (email, password hash, height, weight, goal, xp, level, streakCount, lastWorkoutDate, badges).
+  * `plans.json`: caches generated workout plans per user.
+  * `progress.json`: logs workout completions and reward transactions.
+* Environment Variables: Store secrets (e.g., password salt rounds) in a `.env` file.
+* Authentication: Simple email/password matching against hashed passwords in `users.json`.
+
+## Features
+
+1. **User Profile & Goals**: Users register with email/password and provide personal details. Data saved in `users.json`.
+2. **BMI Calculation**: BMI = (weight in kg) / (height in m)^2. Classification guides plan intensity.
+3. **Personalized 7-Day Plan**: Backend algorithm generates or retrieves from `plans.json` based on stats and goal.
+4. **Gamification Engine**: XP awarded on workout completion, tracked in `progress.json`. Levels unlock via XP thresholds.
+5. **Reward Shop**: Virtual items cost XP; purchases recorded in `progress.json`.
+6. **Progress Tracking & Achievements**: Dashboard reads `progress.json` to visualize history and badges.
+7. **Mock Authentication**: Email/password validated against `users.json`. No external DB.
+
+## Frontend Structure
+
+* **Component Architecture**: Modular React components:
+
+  * `UserForm`: captures height, weight, goal; saves to localStorage and posts to `/api/profile`.
+  * `WorkoutPlan`: displays plan fetched from `/api/plan`.
+  * `XPTracker`: reads XP/level from localStorage; updates on workout completion.
+  * `RewardShop`: lists shop items; posts purchases to `/api/reward`.
+  * `Progress`: fetches history from `/api/progress`.
+* **Local Storage Utilities** (`utils/localStorage.js`): wrappers for `getItem`/`setItem` with JSON parsing.
+* **Routing**: `/login`, `/signup`, `/dashboard`, `/plan`, `/shop`, `/progress`.
+* **Styling**: Tailwind classes handle responsiveness and theming.
+* **Data Flow**: On login/signup, fetch profile from backend, then mirror to localStorage. All UI reads from localStorage and backend as needed.
+
+## Backend Structure
+
+**Data Files** (in `/backend/data`):
+
+```json
+// users.json
+[
+  {
+    "email": "user@example.com",
+    "passwordHash": "$2b$10$...",
+    "height": 1.75,
+    "weight": 70,
+    "goal": "bulking",
+    "xp": 0,
+    "level": 1,
+    "streakCount": 0,
+    "lastWorkoutDate": null,
+    "badges": []
+  }
+]
+```
+
+**fs-based Storage Module** (`storage.js`):
+
+```js
+const fs = require('fs');
+function readData(file) {
+  return JSON.parse(fs.readFileSync(`./data/${file}`, 'utf-8'));
+}
+function writeData(file, data) {
+  fs.writeFileSync(`./data/${file}`, JSON.stringify(data, null, 2));
+}
+module.exports = { readData, writeData };
+```
+
+**API Endpoints** (Express):
+
+* `POST /api/signup`: Add new user to `users.json`.
+* `POST /api/login`: Verify credentials against `users.json`.
+* `GET /api/profile`: Return logged-in user’s profile data.
+* `POST /api/plan`: Generate or fetch 7-day plan; save to `plans.json`.
+* `POST /api/workout/complete`: Update `progress.json`, modify user xp, level, streak in `users.json`.
+* `GET /api/xp`: Return current xp and level.
+* `POST /api/reward`: Validate xp, deduct cost, append transaction to `progress.json`, update `users.json`.
+* `GET /api/progress`: Return workout history and reward transactions.
+
+**Streak & XP Logic**:
+
+1. Read user entry from `users.json`.
+2. Compare `lastWorkoutDate`; update `streakCount`.
+3. Add XP; check thresholds; increment `level` if needed.
+4. Write back to `users.json` and append to `progress.json`.
+
+## User Flow
+
+1. **Sign Up / Login**: Frontend posts to `/api/signup` or `/api/login`. On success, profile is saved to localStorage.
+2. **Enter Stats & Goal**: `UserForm` stores input in localStorage and backend via `/api/profile`.
+3. **View Plan**: On `/plan`, frontend fetches from `/api/plan` and displays.
+4. **Complete Workout**: Button triggers `/api/workout/complete`; updates localStorage and UI.
+5. **Spend XP**: Shop purchases call `/api/reward`; UI updates xp in localStorage.
+6. **Track Progress**: `/progress` endpoint drives charts and badges display.
+
+## Error Handling
+
+* Validate inputs in both frontend and backend.
+* Handle file read/write errors gracefully.
+* Return appropriate HTTP status codes (400, 401, 500).
+
+## Notes & Limitations
+
+* **Persistence**: JSON files persist across server restarts but are not suited for high concurrency.
+* **Security**: Passwords hashed but file-based storage is less secure than a DB.
+* **Scalability**: Suitable for prototypes or small user bases.
+
+With this redesign, Gamify Gym World runs without MongoDB, relying on browser localStorage and server-side JSON files for all data persistence.
