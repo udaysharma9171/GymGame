@@ -23,7 +23,7 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-// API Routes
+// All API Routes
 app.use('/api', authRoutes);
 app.use('/api', planRoutes);
 app.use('/api', workoutRoutes);
