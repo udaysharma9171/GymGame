@@ -19,7 +19,7 @@ ensureDataFilesExist();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware
+// Middlewares
 app.use(cors());
 app.use(express.json());
 
@@ -30,7 +30,7 @@ app.use('/api', workoutRoutes);
 app.use('/api', rewardRoutes);
 app.use('/api', progressRoutes);
 
-// Start server
+
 app.listen(PORT, () => {
-  console.log(`✅ Server running on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
