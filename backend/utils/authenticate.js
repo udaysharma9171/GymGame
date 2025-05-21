@@ -1,13 +1,23 @@
 import { readData } from './storage.js';
 
-export const authenticate = (req, res, next) => {
+const authenticate = (req, res, next) => {
   const authHeader = req.headers.authorization;
-  if (!authHeader?.startsWith('Bearer ')) {
+  if (!authHeader || !authHeader.startsWith('Bearer ')) {
     return res.status(401).json({ error: 'Unauthorized' });
   }
-  const email = Buffer.from(authHeader.split(' ')[1], 'base64').toString().split(':')[0];
-  const user = readData('users.json').find(u => u.email === email);
-  if (!user) return res.status(401).json({ error: 'Unauthorized' });
+
+  const token = authHeader.split(' ')[1];
+  const [email] = Buffer.from(token, 'base64').toString().split(':');
+
+  const users = readData('users.json');
+  const user = users.find(u => u.email === email);
+
+  if (!user) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+
   req.user = user;
   next();
 };
+
+export default authenticate;
