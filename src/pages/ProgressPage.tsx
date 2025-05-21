@@ -6,7 +6,7 @@ import ProgressChart from '../components/ProgressChart';
 import AchievementBadge from '../components/AchievementBadge';
 import { Award, Flame, Dumbbell, Calendar, Target, Zap } from 'lucide-react';
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = 'https://4676b509-b775-4334-8ec4-9881ee7a791a.e1-us-east-azure.choreoapps.dev/api';
 
 interface ProgressData {
   workouts: {
@@ -65,25 +65,28 @@ const ProgressPage: React.FC = () => {
       title: 'First Workout',
       description: 'Completed your first workout',
       icon: <Dumbbell size={24} />,
-      isUnlocked: true,
+      isUnlocked: true, // Assuming this is true by default or has other logic
     },
     {
       title: '3-Day Streak',
       description: 'Worked out for 3 consecutive days',
       icon: <Flame size={24} />,
-      isUnlocked: user?.streakCount >= 3,
+      // Provide a default of 0 if user or streakCount is undefined
+      isUnlocked: (user?.streakCount || 0) >= 3,
     },
     {
       title: '7-Day Streak',
       description: 'Worked out for 7 consecutive days',
       icon: <Flame size={24} />,
-      isUnlocked: user?.streakCount >= 7,
+      // Provide a default of 0 if user or streakCount is undefined
+      isUnlocked: (user?.streakCount || 0) >= 7,
     },
     {
       title: 'Level 5 Reached',
       description: 'Reached level 5 in your fitness journey',
       icon: <Target size={24} />,
-      isUnlocked: user?.level >= 5,
+      // Provide a default of 0 if user or level is undefined
+      isUnlocked: (user?.level || 0) >= 5,
     },
     {
       title: '10 Workouts',

@@ -5,7 +5,7 @@ import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 import WorkoutCard from '../components/WorkoutCard';
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = 'https://4676b509-b775-4334-8ec4-9881ee7a791a.e1-us-east-azure.choreoapps.dev/api';
 
 interface Exercise {
   name: string;
