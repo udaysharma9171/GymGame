@@ -10,5 +10,17 @@
     "streakCount": 1,
     "lastWorkoutDate": "2025-05-19",
     "badges": []
+  },
+  {
+    "email": "udaysharma9171@gmail.com",
+    "passwordHash": "$2b$10$TtkSfvqLqTSXy3Sv0m6tf.DgzoUGbWp9UW2cMXaZ/cBQJyqYfK4A2",
+    "height": null,
+    "weight": null,
+    "goal": null,
+    "xp": 0,
+    "level": 1,
+    "streakCount": 0,
+    "lastWorkoutDate": null,
+    "badges": []
   }
 ]
