@@ -1,25 +1,56 @@
-# Logs
-logs
-*.log
+# -----------------------
+# Node.js (backend)
+# -----------------------
+node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
-
-node_modules
-dist
-dist-ssr
-*.local
-
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+package-lock.json
 .env
+.env.local
+.env.*.local
+
+# Logs
+logs
+*.log
+log.txt
+
+# Build output
+dist/
+build/
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# IDE/Editor
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# -----------------------
+# React + Vite (frontend)
+# -----------------------
+# build output
+.vite/
+coverage/
+*.tsbuildinfo
+
+# Tailwind JIT cache
+.tailwind/
+
+# Dependency caching
+.pnpm-store/
+
+# -----------------------
+# Choreo-specific
+# -----------------------
+.choreo/
+.choreoignore
+
+# -----------------------
+# Optional docs (if not needed)
+# -----------------------
+*Documentation.pdf
+*.Report.txt
