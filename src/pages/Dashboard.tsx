@@ -6,7 +6,7 @@ import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 import LevelBadge from '../components/LevelBadge';
 
-const API_URL = 'https://4676b509-b775-4334-8ec4-9881ee7a791a.e1-us-east-azure.choreoapps.dev/api';
+const API_URL = 'http://localhost:5000/api';
 
 interface Stats {
   workoutsCompleted: number;
